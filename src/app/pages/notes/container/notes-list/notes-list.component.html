@@ -1,0 +1,26 @@
+<div class="main-container">
+  <div class="search-bar-container">
+    <div class="field">
+      <p class="control has-icons-left">
+        <input class="input" placeholder="Filter" type="text"/>
+        <span class="icon is-small is-left">
+          <i class="fas fa-search"></i>
+        </span>
+      </p>
+    </div>
+  </div>
+
+  <div [@listAnim]="" class="notes-list">
+    <app-note-card
+      *ngFor="let note of notesData"
+      [@itemAnim]=""
+      [body]="note.body"
+      [title]="note.title"
+      routerLink="/view-note/{{note.id}}"
+    ></app-note-card>
+  </div>
+
+
+  <button class="button floating-add-button is-primary" routerLink="add-new-note">+ Add</button>
+
+</div>
