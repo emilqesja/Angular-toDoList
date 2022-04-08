@@ -27,4 +27,10 @@ export class NotesService {
     const path = `${this.apiUrl}/notes`;
     return this.http.post<Note>(path, note);
   }
+
+  delete(id: number) {
+    console.log('service', id);
+    const path = `${this.apiUrl}/notes/${id}`;
+    return this.http.delete<Note>(path);
+  }
 }

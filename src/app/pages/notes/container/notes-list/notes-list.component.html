@@ -12,11 +12,11 @@
 
   <div [@listAnim]="" class="notes-list">
     <app-note-card
+      (delte)="deleteNote(note.id)"
       *ngFor="let note of notesData"
       [@itemAnim]=""
       [body]="note.body"
       [title]="note.title"
-      routerLink="/view-note/{{note.id}}"
     ></app-note-card>
   </div>
 

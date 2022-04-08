@@ -9,7 +9,7 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
-import { take } from 'rxjs';
+import { finalize, take } from 'rxjs';
 
 @Component({
   selector: 'app-notes-list',
@@ -101,6 +101,7 @@ import { take } from 'rxjs';
 export class NotesListComponent implements OnInit {
   notesData!: Note[];
   selectedNote!: Note;
+  isSubmitted: boolean = false;
 
   constructor(private notesService: NotesService) {}
 
@@ -119,6 +120,18 @@ export class NotesListComponent implements OnInit {
   }
 
   deleteNote(id: number) {
-    console.log('clickkk');
+    this.isSubmitted = true;
+    console.log('click', id);
+    this.notesService
+      .delete(id)
+      .pipe(
+        take(1),
+        finalize(() => (this.isSubmitted = false))
+      )
+      .subscribe({
+        next: () => {
+          this.fetchNotes();
+        },
+      });
   }
 }
