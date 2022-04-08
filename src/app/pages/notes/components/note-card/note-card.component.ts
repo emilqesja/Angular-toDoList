@@ -17,9 +17,9 @@ import {
 export class NoteCardComponent implements OnInit {
   @Input() title: string = '';
   @Input() body: string = '';
-  @Input() link: string = '';
+  @Input() id!: number;
 
-  @Output('delte') deleteEvent: EventEmitter<void> = new EventEmitter<void>();
+  @Output('delete') deleteEvent: EventEmitter<void> = new EventEmitter<void>();
 
   @ViewChild('truncate', { static: true }) truncate!: ElementRef;
   @ViewChild('bodyText', { static: true }) bodyText!: ElementRef;

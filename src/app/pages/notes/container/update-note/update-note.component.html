@@ -1,5 +1,5 @@
 <div class="form-container">
-  <form (ngSubmit)="onSubmit()" [formGroup]="addNoteForm">
+  <form (ngSubmit)="onSubmit()" [formGroup]="updateNoteForm">
     <div class="field">
       <label class="label">Tittle</label>
       <div class="control">
@@ -21,8 +21,9 @@
       </div>
 
       <div class="control">
-        <button [disabled]="addNoteForm.invalid || isSubmitted" class="button is-success" type="submit">Save</button>
+        <button [disabled]="isSubmitted || updateNoteForm.invalid" class="button is-success" type="submit">Save</button>
       </div>
     </div>
   </form>
 </div>
+

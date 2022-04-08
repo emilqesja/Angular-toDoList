@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 import { API_URL } from '../core/api.token';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 import { Note } from '../pages/notes/container/add-new-note/models/note.model';
 
 @Injectable({
@@ -15,12 +15,16 @@ export class NotesService {
 
   getNotes(): Observable<Note[]> {
     const path = `${this.apiUrl}/notes`;
-    return this.http.get<Note[]>(path);
+    return this.http
+      .get<Note[]>(path)
+      .pipe(catchError((err) => throwError(() => err)));
   }
 
-  getNote(): Observable<Note> {
-    const path = `${this.apiUrl}/notes/id`;
-    return this.http.get<Note>(path);
+  getNote(id: number): Observable<Note> {
+    const path = `${this.apiUrl}/notes/${id}`;
+    return this.http
+      .get<Note>(path)
+      .pipe(catchError((err) => throwError(() => err)));
   }
 
   addNote(note: Note) {
@@ -29,8 +33,12 @@ export class NotesService {
   }
 
   delete(id: number) {
-    console.log('service', id);
     const path = `${this.apiUrl}/notes/${id}`;
     return this.http.delete<Note>(path);
+  }
+
+  updateNote(id: number, note: Note) {
+    const path = `${this.apiUrl}/notes/${id}`;
+    return this.http.put<Note>(path, note);
   }
 }

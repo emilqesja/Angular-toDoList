@@ -27,6 +27,11 @@ export class AddNewNoteComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  getInvalidInput(field: string, validation: string = 'required') {
+    const control = this.addNoteForm.get(field);
+    return control?.hasError(validation) && control.touched;
+  }
+
   onSubmit() {
     this.isSubmitted = true;
     if (this.addNoteForm.invalid) {

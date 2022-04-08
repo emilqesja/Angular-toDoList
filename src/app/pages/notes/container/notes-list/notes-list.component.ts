@@ -102,6 +102,9 @@ export class NotesListComponent implements OnInit {
   notesData!: Note[];
   selectedNote!: Note;
   isSubmitted: boolean = false;
+  filterValue: string = '';
+
+  searchTerm: string = '';
 
   constructor(private notesService: NotesService) {}
 

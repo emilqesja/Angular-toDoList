@@ -2,13 +2,18 @@
   "notes": [
     {
       "id": 1,
-      "title": "To Do Note",
+      "title": "To Do Note ",
       "body": "From generating an API to importing a CSV into postgres, Retool’s range of 20+ developer utilities is a go-to resource when building apps."
     },
     {
       "title": "Note 1",
       "body": "From generating an API to importing a CSV into postgres, Retool’s range of 20+ developer utilities is a go-to resource when building apps.",
       "id": 3
+    },
+    {
+      "title": "My toDo note",
+      "body": "This is my note This is my note This is my note This is my note",
+      "id": 4
     }
   ]
 }

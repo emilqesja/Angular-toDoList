@@ -2,7 +2,8 @@
   <div class="search-bar-container">
     <div class="field">
       <p class="control has-icons-left">
-        <input class="input" placeholder="Filter" type="text"/>
+        <input [(ngModel)]="searchTerm" class="input" placeholder="Filter"
+               type="text"/>
         <span class="icon is-small is-left">
           <i class="fas fa-search"></i>
         </span>
@@ -12,14 +13,14 @@
 
   <div [@listAnim]="" class="notes-list">
     <app-note-card
-      (delte)="deleteNote(note.id)"
-      *ngFor="let note of notesData"
+      (delete)="deleteNote(note.id)"
+      *ngFor="let note of notesData | filter:searchTerm"
       [@itemAnim]=""
       [body]="note.body"
+      [id]="note.id"
       [title]="note.title"
     ></app-note-card>
   </div>
-
 
   <button class="button floating-add-button is-primary" routerLink="add-new-note">+ Add</button>
 
